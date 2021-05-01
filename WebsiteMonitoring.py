@@ -25,7 +25,7 @@ def notify_user():
             smtp.sendmail(EMAIL_ADDRESS, 'vijaynaik2013@gmail.com', msg)
 
 try:
-        r = requests.get('http://qhtpl.com:8080/', timeout=5)
+        r = requests.get('http://mywebsite.com:8080/', timeout=5)
         str1 = str(r.elapsed.total_seconds())
         File_object = open(r"C:\Users\myfolder\Results.txt", "a+")
         File_object.writelines("Response time:" + str1 + 'secs' + " on " \
