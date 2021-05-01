@@ -1,14 +1,14 @@
 import os
 import requests
+import datetime
 import smtplib
 
-r = requests.get('http://qhtpl.com:8080/', timeout = 5)
 #EMAIL_ADDRESS = os.environ.get('EMAIL_USER')
 #EMAIL_PASSWORD = os.environ.get('EMAIL_PASS')
 EMAIL_ADDRESS = 'myemail@domain.com'
 EMAIL_PASSWORD = 'mypassowrd'
+initial = datetime.datetime.now()
 
-# Function for sending email notification to users in case of outage
 def notify_user():
         with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
             smtp.ehlo()
@@ -27,8 +27,9 @@ def notify_user():
 try:
         r = requests.get('http://qhtpl.com:8080/', timeout=5)
         str1 = str(r.elapsed.total_seconds())
-        File_object = open(r"C:\Users\filepath\Myfile1.txt", "a+")
-        File_object.writelines(str1 + '\n')
+        File_object = open(r"C:\Users\myfolder\Results.txt", "a+")
+        File_object.writelines("Response time:" + str1 + 'secs' + " on " \
+                               + str(initial) + '\n')
         if r.status_code != 200:
             notify_user()
 except Exception as e:
